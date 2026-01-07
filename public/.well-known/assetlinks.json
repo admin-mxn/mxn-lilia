@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.informativomxn.app",
+            "sha256_cert_fingerprints": [
+                "25:7D:50:3F:36:45:CC:F1:E3:A3:9F:7C:7B:30:78:0B:59:1A:0B:6E:40:06:F7:A8:FC:28:62:C9:C2:05:E5:19"
+            ]
+        }
+    }
+]
