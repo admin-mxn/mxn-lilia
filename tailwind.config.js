@@ -21,8 +21,15 @@ module.exports = {
           text: colors.neutral[500],
           ["dark-hover"]: colors.neutral[900],
         },
-        'mxn-green': '#00A99D',
-        'mxn-blue': '#00A99D',
+        // Colores de Lilia
+        'lilia-primary': '#8B5CF6',    // Violeta
+        'lilia-secondary': '#A78BFA',  // Violeta claro
+        'lilia-accent': '#C4B5FD',     // Lavanda
+        'lilia-dark': '#1F2937',       // Gris oscuro
+        'lilia-light': '#F9FAFB',      // Gris muy claro
+        // Colores legacy MXN (por compatibilidad)
+        'mxn-green': '#8B5CF6',
+        'mxn-blue': '#8B5CF6',
         'mxn-yellow': '#FFC107',
         'mxn-red': '#FF5252',
         'mxn-dark': '#1A1A1A',
