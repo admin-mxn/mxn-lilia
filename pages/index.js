@@ -11,6 +11,7 @@ import { fetchArticulos } from '../actions/fetch-articulos';
 import { fetchColumnas } from '../actions/fetch-columnas';
 import ArticulosGrid from '../components/ArticulosGrid';
 import CookieConsent from "react-cookie-consent";
+import { colors } from '../lib/styles';
 
 const Home = ({ articulos, columnas }) => {
   const { user, loading } = useFetchUser();
@@ -83,7 +84,8 @@ const Home = ({ articulos, columnas }) => {
               <div className="text-center py-8">
                 <button
                   onClick={() => setPageIndex(pageIndex + 1)}
-                  className="px-6 py-3 bg-lilia-primary text-white rounded-lg hover:bg-lilia-secondary transition"
+                  className="px-6 py-3 text-white rounded-lg hover:opacity-80 transition"
+                  style={{ backgroundColor: colors.accent }}
                 >
                   Cargar más artículos
                 </button>
