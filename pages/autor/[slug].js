@@ -5,6 +5,8 @@ import NavLilia from '../../layouts/NavLilia';
 import Footer from '../../layouts/Footer';
 import { UserProvider, useFetchUser } from '../../lib/authContext';
 import { fetchAutorBySlug } from '../../actions/fetch-autores';
+import HomeBanner from '../../components/HomeBanner';
+import MiddleBanner from '../../components/MiddleBanner';
 import { colors } from '../../lib/styles';
 
 const AutorPage = ({ autor }) => {
@@ -44,6 +46,9 @@ const AutorPage = ({ autor }) => {
 
             <div className="min-h-screen flex flex-col bg-gray-50">
                 <NavLilia back />
+
+                {/* Banner superior */}
+                <HomeBanner />
 
                 <main className="flex-1">
                     {/* Header del autor */}
@@ -130,6 +135,9 @@ const AutorPage = ({ autor }) => {
                             </div>
                         </div>
                     </header>
+
+                    {/* Banner medio */}
+                    <MiddleBanner />
 
                     {/* Columnas del autor */}
                     <section className="max-w-4xl mx-auto px-4 py-8">

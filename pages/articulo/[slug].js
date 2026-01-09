@@ -5,6 +5,8 @@ import NavLilia from '../../layouts/NavLilia';
 import Footer from '../../layouts/Footer';
 import { UserProvider, useFetchUser } from '../../lib/authContext';
 import { fetchArticuloBySlug } from '../../actions/fetch-articulos';
+import HomeBanner from '../../components/HomeBanner';
+import MiddleBanner from '../../components/MiddleBanner';
 import { colors } from '../../lib/styles';
 
 const ArticuloPage = ({ articulo }) => {
@@ -52,6 +54,9 @@ const ArticuloPage = ({ articulo }) => {
 
             <div className="min-h-screen flex flex-col bg-gray-50">
                 <NavLilia back />
+
+                {/* Banner superior */}
+                <HomeBanner />
 
                 <main className="flex-1">
                     <article className="max-w-4xl mx-auto px-4 py-8">
@@ -124,6 +129,11 @@ const ArticuloPage = ({ articulo }) => {
                             className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-lilia-primary"
                             dangerouslySetInnerHTML={{ __html: contenido }}
                         />
+
+                        {/* Banner medio */}
+                        <div className="my-8">
+                            <MiddleBanner />
+                        </div>
 
                         {/* Footer del artículo */}
                         <footer className="mt-12 pt-8 border-t border-gray-200">

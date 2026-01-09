@@ -5,6 +5,8 @@ import NavLilia from '../layouts/NavLilia';
 import Footer from '../layouts/Footer';
 import { UserProvider, useFetchUser } from '../lib/authContext';
 import { fetchAutores } from '../actions/fetch-autores';
+import HomeBanner from '../components/HomeBanner';
+import MiddleBanner from '../components/MiddleBanner';
 import { colors } from '../lib/styles';
 
 const AutoresPage = ({ autores }) => {
@@ -20,6 +22,9 @@ const AutoresPage = ({ autores }) => {
             <div className="min-h-screen flex flex-col bg-gray-50">
                 <NavLilia />
 
+                {/* Banner superior */}
+                <HomeBanner />
+
                 <main className="flex-1">
                     {/* Header */}
                     <header className="text-white py-12" style={{ background: `linear-gradient(to right, ${colors.accent}, #3B82F6)` }}>
@@ -30,6 +35,9 @@ const AutoresPage = ({ autores }) => {
                             </p>
                         </div>
                     </header>
+
+                    {/* Banner medio */}
+                    <MiddleBanner />
 
                     {/* Lista de autores */}
                     <section className="max-w-4xl mx-auto px-4 py-8">

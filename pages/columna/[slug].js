@@ -6,6 +6,8 @@ import Footer from '../../layouts/Footer';
 import { UserProvider, useFetchUser } from '../../lib/authContext';
 import { fetchColumnaBySlug } from '../../actions/fetch-columnas';
 import ArticuloCard from '../../components/ArticuloCard';
+import HomeBanner from '../../components/HomeBanner';
+import MiddleBanner from '../../components/MiddleBanner';
 import { colors } from '../../lib/styles';
 
 const ColumnaPage = ({ columna }) => {
@@ -49,6 +51,9 @@ const ColumnaPage = ({ columna }) => {
 
             <div className="min-h-screen flex flex-col bg-gray-50">
                 <NavLilia back />
+
+                {/* Banner superior */}
+                <HomeBanner />
 
                 <main className="flex-1">
                     {/* Header de la columna */}
@@ -132,6 +137,9 @@ const ColumnaPage = ({ columna }) => {
                     </header>
 
                     {/* Lista de artículos */}
+                    {/* Banner medio */}
+                    <MiddleBanner />
+
                     <section className="max-w-4xl mx-auto px-4 py-8">
                         <h2 className="text-2xl font-bold text-gray-900 mb-6">
                             Artículos de esta columna

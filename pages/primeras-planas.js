@@ -3,6 +3,8 @@ import NavLilia from '../layouts/NavLilia';
 import Footer from '../layouts/Footer';
 import { UserProvider, useFetchUser } from '../lib/authContext';
 import PrimerasPlanas from '../components/PrimerasPlanas';
+import HomeBanner from '../components/HomeBanner';
+import MiddleBanner from '../components/MiddleBanner';
 import { colors } from '../lib/styles';
 
 const PrimerasPlanasPage = () => {
@@ -18,6 +20,9 @@ const PrimerasPlanasPage = () => {
             <div className="min-h-screen flex flex-col bg-gray-50">
                 <NavLilia />
 
+                {/* Banner superior */}
+                <HomeBanner />
+
                 <main className="flex-1">
                     {/* Header */}
                     <header className="text-white py-12" style={{ background: `linear-gradient(to right, ${colors.accent}, #3B82F6)` }}>
@@ -28,6 +33,9 @@ const PrimerasPlanasPage = () => {
                             </p>
                         </div>
                     </header>
+
+                    {/* Banner medio */}
+                    <MiddleBanner />
 
                     {/* Contenido */}
                     <div className="max-w-6xl mx-auto px-4 py-8">

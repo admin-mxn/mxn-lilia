@@ -10,6 +10,8 @@ import Footer from '../layouts/Footer';
 import { fetchArticulos } from '../actions/fetch-articulos';
 import { fetchColumnas } from '../actions/fetch-columnas';
 import ArticulosGrid from '../components/ArticulosGrid';
+import HomeBanner from '../components/HomeBanner';
+import MiddleBanner from '../components/MiddleBanner';
 import CookieConsent from "react-cookie-consent";
 import { colors } from '../lib/styles';
 
@@ -50,6 +52,9 @@ const Home = ({ articulos, columnas }) => {
         <div className="min-h-screen flex flex-col bg-gray-50">
           <NavLilia />
 
+          {/* Banner superior */}
+          <HomeBanner />
+
           <main className="flex-1">
             {/* Hero / Columnas destacadas */}
             {columnas && columnas.length > 0 && (
@@ -75,6 +80,9 @@ const Home = ({ articulos, columnas }) => {
                 </div>
               </section>
             )}
+
+            {/* Banner medio */}
+            <MiddleBanner />
 
             {/* Grid de artículos */}
             <div className="max-w-6xl mx-auto">
