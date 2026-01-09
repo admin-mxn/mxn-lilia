@@ -5,6 +5,7 @@ import NavLilia from '../../layouts/NavLilia';
 import Footer from '../../layouts/Footer';
 import { UserProvider, useFetchUser } from '../../lib/authContext';
 import { fetchAutorBySlug } from '../../actions/fetch-autores';
+import { colors } from '../../lib/styles';
 
 const AutorPage = ({ autor }) => {
     const { user, loading } = useFetchUser();
@@ -46,13 +47,13 @@ const AutorPage = ({ autor }) => {
 
                 <main className="flex-1">
                     {/* Header del autor */}
-                    <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+                    <header className="text-white" style={{ background: `linear-gradient(to right, ${colors.accent}, #3B82F6)` }}>
                         <div className="max-w-4xl mx-auto px-4 py-12">
                             <div className="flex flex-col md:flex-row items-center gap-8">
                                 {/* Foto del autor */}
                                 <div className="flex-shrink-0">
-                                    <div className="w-48 h-48 bg-white p-3 rounded-tl-[2.5rem] rounded-br-[2.5rem] shadow-lg" style={{ border: '4px solid #BBBBBB' }}>
-                                        <div className="relative w-full h-full overflow-hidden rounded-tl-3xl rounded-br-3xl">
+                                    <div className="w-48 h-48 bg-white p-2 rounded-tl-[3rem] rounded-br-[3rem] shadow-lg" style={{ border: '5px solid #BBBBBB' }}>
+                                        <div className="relative w-full h-full overflow-hidden rounded-tl-[2.5rem] rounded-br-[2.5rem]">
                                             {fotoUrl ? (
                                                 <Image
                                                     src={fotoUrl}
@@ -67,7 +68,7 @@ const AutorPage = ({ autor }) => {
                                             )}
                                         </div>
                                     </div>
-                                    <p className="mt-3 text-center text-xl font-semibold italic text-blue-100">
+                                    <p className="mt-3 text-center text-xl font-semibold italic text-white/90">
                                         {nombre}
                                     </p>
                                 </div>
@@ -75,19 +76,20 @@ const AutorPage = ({ autor }) => {
                                 {/* Info del autor */}
                                 <div className="flex-1 text-center md:text-left">
                                     {bio && (
-                                        <p className="text-blue-100 text-lg leading-relaxed">
+                                        <p className="text-white/80 text-lg leading-relaxed">
                                             {bio}
                                         </p>
                                     )}
 
                                     {/* Datos de contacto */}
-                                    <div className="mt-6 space-y-2">
+                                    <div className="mt-6 flex flex-wrap gap-2">
                                         {url_sitio && (
                                             <a 
                                                 href={url_sitio} 
                                                 target="_blank" 
                                                 rel="noopener noreferrer" 
-                                                className="block text-blue-200 hover:text-white transition"
+                                                className="px-3 py-1 rounded-bl-lg rounded-tr-lg text-white hover:opacity-80 transition"
+                                                style={{ backgroundColor: colors.border }}
                                             >
                                                 🌐 {url_sitio.replace('https://', '').replace('http://', '')}
                                             </a>
@@ -95,7 +97,8 @@ const AutorPage = ({ autor }) => {
                                         {email && (
                                             <a 
                                                 href={`mailto:${email}`} 
-                                                className="block text-blue-200 hover:text-white transition"
+                                                className="px-3 py-1 rounded-bl-lg rounded-tr-lg text-white hover:opacity-80 transition"
+                                                style={{ backgroundColor: colors.border }}
                                             >
                                                 ✉️ {email}
                                             </a>
@@ -105,7 +108,8 @@ const AutorPage = ({ autor }) => {
                                                 href={`https://twitter.com/${twitter_x.replace('@', '')}`} 
                                                 target="_blank" 
                                                 rel="noopener noreferrer" 
-                                                className="block text-blue-200 hover:text-white transition"
+                                                className="px-3 py-1 rounded-bl-lg rounded-tr-lg text-white hover:opacity-80 transition"
+                                                style={{ backgroundColor: colors.border }}
                                             >
                                                 𝕏 @{twitter_x.replace('@', '')}
                                             </a>
@@ -115,7 +119,8 @@ const AutorPage = ({ autor }) => {
                                                 href={`https://instagram.com/${instagram.replace('@', '')}`} 
                                                 target="_blank" 
                                                 rel="noopener noreferrer" 
-                                                className="block text-blue-200 hover:text-white transition"
+                                                className="px-3 py-1 rounded-bl-lg rounded-tr-lg text-white hover:opacity-80 transition"
+                                                style={{ backgroundColor: colors.border }}
                                             >
                                                 📷 @{instagram.replace('@', '')}
                                             </a>
@@ -144,7 +149,7 @@ const AutorPage = ({ autor }) => {
                                             href={`/columna/${colAttrs.slug}`}
                                             className="block bg-white border border-gray-200 shadow-sm hover:shadow-md transition p-6"
                                         >
-                                            <h3 className="text-xl font-bold text-gray-900 hover:text-blue-600">
+                                            <h3 className="text-xl font-bold text-gray-900" style={{ ':hover': { color: colors.accent } }}>
                                                 {colAttrs.nombre}
                                             </h3>
                                             {colAttrs.descripcion && (
@@ -152,7 +157,7 @@ const AutorPage = ({ autor }) => {
                                                     {colAttrs.descripcion}
                                                 </p>
                                             )}
-                                            <p className="mt-4 text-sm text-blue-500">
+                                            <p className="mt-4 text-sm" style={{ color: colors.accent }}>
                                                 {articulos.length} artículo{articulos.length !== 1 ? 's' : ''}
                                             </p>
                                         </Link>

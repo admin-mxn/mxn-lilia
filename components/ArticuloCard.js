@@ -25,12 +25,12 @@ export default function ArticuloCard({ articulo }) {
     return (
         <article className="bg-white border border-gray-200 shadow-sm overflow-hidden">
             {/* Header: Autor + Datos de contacto */}
-            <div className="flex flex-col md:flex-row gap-4 p-4 bg-gradient-to-r from-blue-50 to-white border-b border-gray-200">
-                {/* Foto y nombre del autor */}
-                <div className="flex-shrink-0 text-center">
-                    <Link href={autor?.slug ? `/autor/${autor.slug}` : '#'}>
-                        <div className="w-32 h-32 mx-auto bg-white p-2 rounded-tl-3xl rounded-br-3xl" style={{ border: '3px solid #BBBBBB' }}>
-                            <div className="relative w-full h-full overflow-hidden rounded-tl-2xl rounded-br-2xl">
+            <div className="flex justify-between items-end p-4 bg-gradient-to-r from-blue-50 to-white border-b border-gray-200">
+                {/* Foto y nombre del autor - alineado izquierda */}
+                <div className="flex-shrink-0">
+                    <Link href={autor?.slug ? `/autor/${autor.slug}` : '#'} className="relative inline-block">
+                        <div className="w-32 h-32 bg-white p-1.5 rounded-tl-[2rem] rounded-br-[2rem]" style={{ border: '4px solid #BBBBBB' }}>
+                            <div className="relative w-full h-full overflow-hidden rounded-tl-[1.5rem] rounded-br-[1.5rem]">
                                 <Image
                                     src={autorFoto}
                                     alt={autor?.nombre || 'Autor'}
@@ -39,32 +39,32 @@ export default function ArticuloCard({ articulo }) {
                                 />
                             </div>
                         </div>
-                        <p className="mt-2 text-sm font-semibold text-blue-600 italic">
+                        <div className="absolute bottom-0 left-[30px] px-3 py-1 text-sm font-semibold text-black italic whitespace-nowrap rounded-bl-lg rounded-tr-lg" style={{ backgroundColor: '#BBBBBB' }}>
                             {autor?.nombre || 'Autor'}
-                        </p>
+                        </div>
                     </Link>
                 </div>
 
-                {/* Datos de contacto */}
-                <div className="flex-1 text-sm text-gray-600 space-y-1">
+                {/* Datos de contacto - alineado derecha, en columna */}
+                <div className="flex flex-col items-end gap-1">
                     {autor?.url_sitio && (
-                        <a href={autor.url_sitio} target="_blank" rel="noopener noreferrer" className="block text-blue-500 hover:underline">
-                            {autor.url_sitio.replace('https://', '').replace('http://', '')}
+                        <a href={autor.url_sitio} target="_blank" rel="noopener noreferrer" className="inline-block px-3 py-1 text-sm text-white hover:opacity-80 rounded-bl-lg rounded-tr-lg" style={{ backgroundColor: '#BBBBBB' }}>
+                            🌐 {autor.url_sitio.replace('https://', '').replace('http://', '')}
                         </a>
                     )}
                     {autor?.email && (
-                        <a href={`mailto:${autor.email}`} className="block text-blue-500 hover:underline">
-                            {autor.email}
+                        <a href={`mailto:${autor.email}`} className="inline-block px-3 py-1 text-sm text-white hover:opacity-80 rounded-bl-lg rounded-tr-lg" style={{ backgroundColor: '#BBBBBB' }}>
+                            ✉️ {autor.email}
                         </a>
                     )}
                     {autor?.twitter_x && (
-                        <a href={`https://twitter.com/${autor.twitter_x.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="block text-blue-500 hover:underline">
-                            @{autor.twitter_x.replace('@', '')}
+                        <a href={`https://twitter.com/${autor.twitter_x.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="inline-block px-3 py-1 text-sm text-white hover:opacity-80 rounded-bl-lg rounded-tr-lg" style={{ backgroundColor: '#BBBBBB' }}>
+                            𝕏 @{autor.twitter_x.replace('@', '')}
                         </a>
                     )}
                     {autor?.instagram && (
-                        <a href={`https://instagram.com/${autor.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="block text-blue-500 hover:underline">
-                            @{autor.instagram.replace('@', '')}
+                        <a href={`https://instagram.com/${autor.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="inline-block px-3 py-1 text-sm text-white hover:opacity-80 rounded-bl-lg rounded-tr-lg" style={{ backgroundColor: '#BBBBBB' }}>
+                            📷 @{autor.instagram.replace('@', '')}
                         </a>
                     )}
                 </div>
@@ -84,7 +84,7 @@ export default function ArticuloCard({ articulo }) {
             {/* Título del artículo como subtítulo/epígrafe */}
             <div className="px-4 py-2">
                 <Link href={`/articulo/${slug}`}>
-                    <p className="text-gray-700 italic border-l-4 border-blue-400 pl-3">
+                    <p className="text-gray-700 italic pl-3" style={{ borderLeft: '4px solid #69A6DB' }}>
                         "{titulo}"
                     </p>
                 </Link>
@@ -101,7 +101,8 @@ export default function ArticuloCard({ articulo }) {
             <div className="px-4 pb-4 text-right">
                 <Link 
                     href={`/articulo/${slug}`}
-                    className="inline-block bg-blue-500 text-white text-sm px-4 py-2 hover:bg-blue-600 transition"
+                    className="inline-block text-white text-sm px-4 py-2 hover:opacity-80 transition"
+                    style={{ backgroundColor: '#69A6DB' }}
                 >
                     Leer mas...
                 </Link>

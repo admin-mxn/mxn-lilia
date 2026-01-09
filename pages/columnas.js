@@ -5,6 +5,7 @@ import NavLilia from '../layouts/NavLilia';
 import Footer from '../layouts/Footer';
 import { UserProvider, useFetchUser } from '../lib/authContext';
 import { fetchColumnas } from '../actions/fetch-columnas';
+import { colors } from '../lib/styles';
 
 const ColumnasPage = ({ columnas }) => {
     const { user, loading } = useFetchUser();
@@ -21,10 +22,10 @@ const ColumnasPage = ({ columnas }) => {
 
                 <main className="flex-1">
                     {/* Header */}
-                    <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12">
+                    <header className="text-white py-12" style={{ background: `linear-gradient(to right, ${colors.accent}, #3B82F6)` }}>
                         <div className="max-w-4xl mx-auto px-4 text-center">
                             <h1 className="text-4xl font-bold">Columnas</h1>
-                            <p className="mt-2 text-blue-100 text-lg">
+                            <p className="mt-2 text-white/80 text-lg">
                                 Opinión y análisis de nuestros colaboradores
                             </p>
                         </div>
@@ -61,8 +62,8 @@ const ColumnasPage = ({ columnas }) => {
                                             <div className="p-6">
                                                 <div className="flex items-center gap-4 mb-4">
                                                     {/* Foto del autor */}
-                                                    <div className="w-16 h-16 flex-shrink-0 bg-white p-1 rounded-tl-2xl rounded-br-2xl" style={{ border: '3px solid #BBBBBB' }}>
-                                                        <div className="relative w-full h-full overflow-hidden rounded-tl-xl rounded-br-xl">
+                                                    <div className="w-16 h-16 flex-shrink-0 bg-white p-0.5 rounded-tl-xl rounded-br-xl" style={{ border: '4px solid #BBBBBB' }}>
+                                                        <div className="relative w-full h-full overflow-hidden rounded-tl-lg rounded-br-lg">
                                                             {fotoUrl ? (
                                                                 <Image
                                                                     src={fotoUrl}
@@ -96,7 +97,7 @@ const ColumnasPage = ({ columnas }) => {
                                                     </p>
                                                 )}
 
-                                                <p className="mt-4 text-sm text-blue-500 font-medium">
+                                                <p className="mt-4 text-sm font-medium" style={{ color: colors.accent }}>
                                                     {articulos.length} artículo{articulos.length !== 1 ? 's' : ''} →
                                                 </p>
                                             </div>

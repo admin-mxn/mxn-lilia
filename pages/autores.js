@@ -5,6 +5,7 @@ import NavLilia from '../layouts/NavLilia';
 import Footer from '../layouts/Footer';
 import { UserProvider, useFetchUser } from '../lib/authContext';
 import { fetchAutores } from '../actions/fetch-autores';
+import { colors } from '../lib/styles';
 
 const AutoresPage = ({ autores }) => {
     const { user, loading } = useFetchUser();
@@ -21,10 +22,10 @@ const AutoresPage = ({ autores }) => {
 
                 <main className="flex-1">
                     {/* Header */}
-                    <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12">
+                    <header className="text-white py-12" style={{ background: `linear-gradient(to right, ${colors.accent}, #3B82F6)` }}>
                         <div className="max-w-4xl mx-auto px-4 text-center">
                             <h1 className="text-4xl font-bold">Autores</h1>
-                            <p className="mt-2 text-blue-100 text-lg">
+                            <p className="mt-2 text-white/80 text-lg">
                                 Nuestros columnistas y colaboradores
                             </p>
                         </div>
@@ -46,8 +47,8 @@ const AutoresPage = ({ autores }) => {
                                             className="block bg-white border border-gray-200 shadow-sm hover:shadow-lg transition text-center p-6"
                                         >
                                             {/* Foto del autor */}
-                                            <div className="w-36 h-36 mx-auto bg-white p-2 rounded-tl-3xl rounded-br-3xl" style={{ border: '3px solid #BBBBBB' }}>
-                                                <div className="relative w-full h-full overflow-hidden rounded-tl-2xl rounded-br-2xl">
+                                            <div className="w-36 h-36 mx-auto bg-white p-1.5 rounded-tl-[2rem] rounded-br-[2rem]" style={{ border: '4px solid #BBBBBB' }}>
+                                                <div className="relative w-full h-full overflow-hidden rounded-tl-[1.5rem] rounded-br-[1.5rem]">
                                                     {fotoUrl ? (
                                                         <Image
                                                             src={fotoUrl}
@@ -73,7 +74,7 @@ const AutoresPage = ({ autores }) => {
                                                 </p>
                                             )}
 
-                                            <p className="mt-4 text-sm text-blue-500 font-medium">
+                                            <p className="mt-4 text-sm font-medium" style={{ color: colors.accent }}>
                                                 {columnas.length} columna{columnas.length !== 1 ? 's' : ''}
                                             </p>
 

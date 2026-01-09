@@ -5,6 +5,7 @@ import NavLilia from '../../layouts/NavLilia';
 import Footer from '../../layouts/Footer';
 import { UserProvider, useFetchUser } from '../../lib/authContext';
 import { fetchArticuloBySlug } from '../../actions/fetch-articulos';
+import { colors } from '../../lib/styles';
 
 const ArticuloPage = ({ articulo }) => {
     const { user, loading } = useFetchUser();
@@ -59,13 +60,19 @@ const ArticuloPage = ({ articulo }) => {
                             {/* Columna badge */}
                             {columnaData?.nombre && (
                                 <Link href={`/columna/${columnaData.slug}`}>
-                                    <span className="text-sm font-semibold text-lilia-primary uppercase tracking-wide hover:underline">
+                                    <span 
+                                        className="inline-block text-sm font-semibold uppercase tracking-wide px-3 py-1 rounded-bl-lg rounded-tr-lg text-white hover:opacity-80 transition"
+                                        style={{ backgroundColor: colors.accent }}
+                                    >
                                         {columnaData.nombre}
                                     </span>
                                 </Link>
                             )}
 
-                            <h1 className="mt-2 text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+                            <h1 
+                                className="mt-4 text-3xl md:text-4xl font-bold text-gray-900 leading-tight pl-4"
+                                style={{ borderLeft: `4px solid ${colors.accent}` }}
+                            >
                                 {titulo}
                             </h1>
 
@@ -74,17 +81,22 @@ const ArticuloPage = ({ articulo }) => {
                                 {autor && (
                                     <Link href={`/autor/${autor.slug}`} className="flex items-center">
                                         {autorFoto && (
-                                            <div className="relative h-12 w-12 rounded-full overflow-hidden mr-3">
-                                                <Image
-                                                    src={autorFoto}
-                                                    alt={autor.nombre || 'Autor'}
-                                                    fill
-                                                    className="object-cover"
-                                                />
+                                            <div 
+                                                className="h-14 w-14 bg-white p-1 rounded-tl-xl rounded-br-xl mr-3 flex-shrink-0"
+                                                style={{ border: `3px solid ${colors.border}` }}
+                                            >
+                                                <div className="relative w-full h-full overflow-hidden rounded-tl-lg rounded-br-lg">
+                                                    <Image
+                                                        src={autorFoto}
+                                                        alt={autor.nombre || 'Autor'}
+                                                        fill
+                                                        className="object-cover"
+                                                    />
+                                                </div>
                                             </div>
                                         )}
                                         <div>
-                                            <span className="block font-medium text-gray-900 hover:text-lilia-primary">
+                                            <span className="block font-medium text-gray-900" style={{ ':hover': { color: colors.accent } }}>
                                                 {autor.nombre}
                                             </span>
                                             <time className="text-sm text-gray-500">{fechaFormateada}</time>
@@ -118,36 +130,46 @@ const ArticuloPage = ({ articulo }) => {
                             {autor && (
                                 <div className="bg-gray-100 rounded-lg p-6">
                                     <h3 className="text-lg font-bold text-gray-900 mb-4">Sobre el autor</h3>
-                                    <Link href={`/autor/${autor.slug}`} className="flex items-start">
-                                        {autorFoto && (
-                                            <div className="relative h-16 w-16 rounded-full overflow-hidden mr-4 flex-shrink-0">
-                                                <Image
-                                                    src={autorFoto}
-                                                    alt={autor.nombre || 'Autor'}
-                                                    fill
-                                                    className="object-cover"
-                                                />
-                                            </div>
-                                        )}
-                                        <div>
-                                            <span className="block font-bold text-gray-900 hover:text-lilia-primary">
-                                                {autor.nombre}
-                                            </span>
+                                    <div className="flex items-start">
+                                        <Link href={`/autor/${autor.slug}`} className="flex-shrink-0">
+                                            {autorFoto && (
+                                                <div 
+                                                    className="h-20 w-20 bg-white p-1.5 rounded-tl-[1.5rem] rounded-br-[1.5rem] mr-4"
+                                                    style={{ border: `4px solid ${colors.border}` }}
+                                                >
+                                                    <div className="relative w-full h-full overflow-hidden rounded-tl-[1rem] rounded-br-[1rem]">
+                                                        <Image
+                                                            src={autorFoto}
+                                                            alt={autor.nombre || 'Autor'}
+                                                            fill
+                                                            className="object-cover"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </Link>
+                                        <div className="flex-1">
+                                            <Link href={`/autor/${autor.slug}`}>
+                                                <span className="block font-bold text-gray-900 hover:opacity-80" style={{ color: colors.accent }}>
+                                                    {autor.nombre}
+                                                </span>
+                                            </Link>
                                             {autor.bio && (
                                                 <p className="text-gray-600 text-sm mt-1 line-clamp-3">
                                                     {autor.bio}
                                                 </p>
                                             )}
-                                            {(autor.twitter_x || autor.instagram) && (
-                                                <div className="flex gap-3 mt-2">
+                                            {(autor.twitter_x || autor.instagram || autor.email) && (
+                                                <div className="flex flex-wrap gap-2 mt-3">
                                                     {autor.twitter_x && (
                                                         <a 
                                                             href={`https://twitter.com/${autor.twitter_x.replace('@', '')}`}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className="text-sm text-lilia-primary hover:underline"
+                                                            className="text-sm px-3 py-1 rounded-bl-lg rounded-tr-lg text-white hover:opacity-80 transition"
+                                                            style={{ backgroundColor: colors.border }}
                                                         >
-                                                            @{autor.twitter_x.replace('@', '')}
+                                                            𝕏 @{autor.twitter_x.replace('@', '')}
                                                         </a>
                                                     )}
                                                     {autor.instagram && (
@@ -155,15 +177,16 @@ const ArticuloPage = ({ articulo }) => {
                                                             href={`https://instagram.com/${autor.instagram.replace('@', '')}`}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className="text-sm text-lilia-primary hover:underline"
+                                                            className="text-sm px-3 py-1 rounded-bl-lg rounded-tr-lg text-white hover:opacity-80 transition"
+                                                            style={{ backgroundColor: colors.border }}
                                                         >
-                                                            📷 {autor.instagram.replace('@', '')}
+                                                            📷 @{autor.instagram.replace('@', '')}
                                                         </a>
                                                     )}
                                                 </div>
                                             )}
                                         </div>
-                                    </Link>
+                                    </div>
                                 </div>
                             )}
                         </footer>

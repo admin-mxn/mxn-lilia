@@ -6,6 +6,7 @@ import Footer from '../../layouts/Footer';
 import { UserProvider, useFetchUser } from '../../lib/authContext';
 import { fetchColumnaBySlug } from '../../actions/fetch-columnas';
 import ArticuloCard from '../../components/ArticuloCard';
+import { colors } from '../../lib/styles';
 
 const ColumnaPage = ({ columna }) => {
     const { user, loading } = useFetchUser();
@@ -51,14 +52,14 @@ const ColumnaPage = ({ columna }) => {
 
                 <main className="flex-1">
                     {/* Header de la columna */}
-                    <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+                    <header className="text-white" style={{ background: `linear-gradient(to right, ${colors.accent}, #3B82F6)` }}>
                         <div className="max-w-4xl mx-auto px-4 py-12">
                             <div className="flex flex-col md:flex-row items-center gap-6">
                                 {/* Foto del autor */}
                                 {autor && (
                                     <Link href={`/autor/${autor.slug}`} className="flex-shrink-0">
-                                        <div className="w-40 h-40 bg-white p-2 rounded-tl-3xl rounded-br-3xl shadow-lg" style={{ border: '3px solid #BBBBBB' }}>
-                                            <div className="relative w-full h-full overflow-hidden rounded-tl-2xl rounded-br-2xl">
+                                        <div className="w-40 h-40 bg-white p-1.5 rounded-tl-[2rem] rounded-br-[2rem] shadow-lg" style={{ border: '4px solid #BBBBBB' }}>
+                                            <div className="relative w-full h-full overflow-hidden rounded-tl-[1.5rem] rounded-br-[1.5rem]">
                                                 {autorFoto ? (
                                                     <Image
                                                         src={autorFoto}
@@ -81,37 +82,45 @@ const ColumnaPage = ({ columna }) => {
                                     <h1 className="text-3xl md:text-4xl font-bold">{nombre}</h1>
                                     {autor && (
                                         <Link href={`/autor/${autor.slug}`}>
-                                            <p className="text-xl text-blue-200 mt-2 hover:text-white italic">
+                                            <p className="text-xl text-white/80 mt-2 hover:text-white italic">
                                                 por {autor.nombre}
                                             </p>
                                         </Link>
                                     )}
                                     {descripcion && (
-                                        <p className="mt-4 text-blue-100 max-w-xl">
+                                        <p className="mt-4 text-white/80 max-w-xl">
                                             {descripcion}
                                         </p>
                                     )}
 
                                     {/* Datos de contacto del autor */}
                                     {autor && (
-                                        <div className="mt-4 flex flex-wrap gap-4 justify-center md:justify-start text-sm">
+                                        <div className="mt-4 flex flex-wrap gap-2 justify-center md:justify-start text-sm">
                                             {autor.url_sitio && (
-                                                <a href={autor.url_sitio} target="_blank" rel="noopener noreferrer" className="text-blue-200 hover:text-white">
+                                                <a href={autor.url_sitio} target="_blank" rel="noopener noreferrer" 
+                                                   className="px-3 py-1 rounded-bl-lg rounded-tr-lg text-white hover:opacity-80 transition"
+                                                   style={{ backgroundColor: colors.border }}>
                                                     🌐 {autor.url_sitio.replace('https://', '').replace('http://', '')}
                                                 </a>
                                             )}
                                             {autor.email && (
-                                                <a href={`mailto:${autor.email}`} className="text-blue-200 hover:text-white">
+                                                <a href={`mailto:${autor.email}`} 
+                                                   className="px-3 py-1 rounded-bl-lg rounded-tr-lg text-white hover:opacity-80 transition"
+                                                   style={{ backgroundColor: colors.border }}>
                                                     ✉️ {autor.email}
                                                 </a>
                                             )}
                                             {autor.twitter_x && (
-                                                <a href={`https://twitter.com/${autor.twitter_x.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="text-blue-200 hover:text-white">
+                                                <a href={`https://twitter.com/${autor.twitter_x.replace('@', '')}`} target="_blank" rel="noopener noreferrer" 
+                                                   className="px-3 py-1 rounded-bl-lg rounded-tr-lg text-white hover:opacity-80 transition"
+                                                   style={{ backgroundColor: colors.border }}>
                                                     𝕏 @{autor.twitter_x.replace('@', '')}
                                                 </a>
                                             )}
                                             {autor.instagram && (
-                                                <a href={`https://instagram.com/${autor.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="text-blue-200 hover:text-white">
+                                                <a href={`https://instagram.com/${autor.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" 
+                                                   className="px-3 py-1 rounded-bl-lg rounded-tr-lg text-white hover:opacity-80 transition"
+                                                   style={{ backgroundColor: colors.border }}>
                                                     📷 @{autor.instagram.replace('@', '')}
                                                 </a>
                                             )}
