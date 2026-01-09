@@ -88,6 +88,9 @@ const NavLilia = ({ back }) => {
         <Link href="/" className="text-white hover:text-white/80 transition text-xs sm:text-sm font-medium">
           Inicio
         </Link>
+        <Link href="/primeras-planas" className="text-white hover:text-white/80 transition text-xs sm:text-sm font-medium">
+          Primeras Planas
+        </Link>
         <Link href="/columnas" className="text-white hover:text-white/80 transition text-xs sm:text-sm font-medium">
           Columnas
         </Link>
