@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function ArticuloCard({ articulo }) {
+export default function ArticuloCard({ articulo, hideAuthor = false }) {
     const { titulo, extracto, fecha_publicacion, contenido, imagen, slug, columna } = articulo.attributes || articulo;
     const autor = columna?.data?.attributes?.autor?.data?.attributes || columna?.autor;
     const columnaData = columna?.data?.attributes || columna;
@@ -24,51 +24,53 @@ export default function ArticuloCard({ articulo }) {
 
     return (
         <article className="bg-white border border-gray-200 shadow-sm overflow-hidden">
-            {/* Header: Autor + Datos de contacto */}
-            <div className="flex justify-between items-end p-4 bg-gradient-to-r from-blue-50 to-white border-b border-gray-200">
-                {/* Foto y nombre del autor - alineado izquierda */}
-                <div className="flex-shrink-0">
-                    <Link href={autor?.slug ? `/autor/${autor.slug}` : '#'} className="relative inline-block">
-                        <div className="w-32 h-32 bg-white p-1.5 rounded-tl-[2rem] rounded-br-[2rem]" style={{ border: '4px solid #BBBBBB' }}>
-                            <div className="relative w-full h-full overflow-hidden rounded-tl-[1.5rem] rounded-br-[1.5rem]">
-                                <Image
-                                    src={autorFoto}
-                                    alt={autor?.nombre || 'Autor'}
-                                    fill
-                                    className="object-cover"
-                                />
+            {/* Header: Autor + Datos de contacto (solo si no está oculto) */}
+            {!hideAuthor && (
+                <div className="flex justify-between items-end p-4 bg-gradient-to-r from-blue-50 to-white border-b border-gray-200">
+                    {/* Foto y nombre del autor - alineado izquierda */}
+                    <div className="flex-shrink-0">
+                        <Link href={autor?.slug ? `/autor/${autor.slug}` : '#'} className="relative inline-block">
+                            <div className="w-32 h-32 bg-white p-1.5 rounded-tl-[2rem] rounded-br-[2rem]" style={{ border: '4px solid #BBBBBB' }}>
+                                <div className="relative w-full h-full overflow-hidden rounded-tl-[1.5rem] rounded-br-[1.5rem]">
+                                    <Image
+                                        src={autorFoto}
+                                        alt={autor?.nombre || 'Autor'}
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
                             </div>
-                        </div>
-                        <div className="absolute bottom-0 left-[30px] px-3 py-1 text-sm font-semibold text-black italic whitespace-nowrap rounded-bl-lg rounded-tr-lg" style={{ backgroundColor: '#BBBBBB' }}>
-                            {autor?.nombre || 'Autor'}
-                        </div>
-                    </Link>
-                </div>
+                            <div className="absolute bottom-0 left-[30px] px-3 py-1 text-sm font-semibold text-black italic whitespace-nowrap rounded-bl-lg rounded-tr-lg" style={{ backgroundColor: '#BBBBBB' }}>
+                                {autor?.nombre || 'Autor'}
+                            </div>
+                        </Link>
+                    </div>
 
-                {/* Datos de contacto - alineado derecha, en columna */}
-                <div className="flex flex-col items-end gap-1">
-                    {autor?.url_sitio && (
-                        <a href={autor.url_sitio} target="_blank" rel="noopener noreferrer" className="inline-block px-3 py-1 text-sm text-white hover:opacity-80 rounded-bl-lg rounded-tr-lg" style={{ backgroundColor: '#BBBBBB' }}>
-                            🌐 {autor.url_sitio.replace('https://', '').replace('http://', '')}
-                        </a>
-                    )}
-                    {autor?.email && (
-                        <a href={`mailto:${autor.email}`} className="inline-block px-3 py-1 text-sm text-white hover:opacity-80 rounded-bl-lg rounded-tr-lg" style={{ backgroundColor: '#BBBBBB' }}>
-                            ✉️ {autor.email}
-                        </a>
-                    )}
-                    {autor?.twitter_x && (
-                        <a href={`https://twitter.com/${autor.twitter_x.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="inline-block px-3 py-1 text-sm text-white hover:opacity-80 rounded-bl-lg rounded-tr-lg" style={{ backgroundColor: '#BBBBBB' }}>
-                            𝕏 @{autor.twitter_x.replace('@', '')}
-                        </a>
-                    )}
-                    {autor?.instagram && (
-                        <a href={`https://instagram.com/${autor.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="inline-block px-3 py-1 text-sm text-white hover:opacity-80 rounded-bl-lg rounded-tr-lg" style={{ backgroundColor: '#BBBBBB' }}>
-                            📷 @{autor.instagram.replace('@', '')}
-                        </a>
-                    )}
+                    {/* Datos de contacto - alineado derecha, en columna */}
+                    <div className="flex flex-col items-end gap-1">
+                        {autor?.url_sitio && (
+                            <a href={autor.url_sitio} target="_blank" rel="noopener noreferrer" className="inline-block px-3 py-1 text-sm text-white hover:opacity-80 rounded-bl-lg rounded-tr-lg" style={{ backgroundColor: '#BBBBBB' }}>
+                                🌐 {autor.url_sitio.replace('https://', '').replace('http://', '')}
+                            </a>
+                        )}
+                        {autor?.email && (
+                            <a href={`mailto:${autor.email}`} className="inline-block px-3 py-1 text-sm text-white hover:opacity-80 rounded-bl-lg rounded-tr-lg" style={{ backgroundColor: '#BBBBBB' }}>
+                                ✉️ {autor.email}
+                            </a>
+                        )}
+                        {autor?.twitter_x && (
+                            <a href={`https://twitter.com/${autor.twitter_x.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="inline-block px-3 py-1 text-sm text-white hover:opacity-80 rounded-bl-lg rounded-tr-lg" style={{ backgroundColor: '#BBBBBB' }}>
+                                𝕏 @{autor.twitter_x.replace('@', '')}
+                            </a>
+                        )}
+                        {autor?.instagram && (
+                            <a href={`https://instagram.com/${autor.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="inline-block px-3 py-1 text-sm text-white hover:opacity-80 rounded-bl-lg rounded-tr-lg" style={{ backgroundColor: '#BBBBBB' }}>
+                                📷 @{autor.instagram.replace('@', '')}
+                            </a>
+                        )}
+                    </div>
                 </div>
-            </div>
+            )}
 
             {/* Nombre de la columna */}
             <div className="px-4 pt-4">

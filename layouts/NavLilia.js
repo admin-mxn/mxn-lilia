@@ -82,20 +82,49 @@ const NavLilia = ({ back }) => {
         style={{ 
           backgroundColor: '#585A5A', 
           borderTop: '2px solid #231F20', 
-          borderBottom: '2px solid #231F20' 
+          borderBottom: '2px solid #231F20',
+          fontFamily: "'Oswald', 'Impact', 'Haettenschweiler', 'Arial Narrow Bold', sans-serif"
         }}
       >
-        <Link href="/" className="text-white hover:text-white/80 transition text-xs sm:text-sm font-medium">
-          Inicio
+        <Link 
+          href="/" 
+          className={`uppercase tracking-wide text-xs sm:text-sm font-semibold transition ${
+            router.pathname === '/' 
+              ? 'text-white' 
+              : 'text-white/50 hover:text-white'
+          }`}
+        >
+          INICIO
         </Link>
-        <Link href="/primeras-planas" className="text-white hover:text-white/80 transition text-xs sm:text-sm font-medium">
-          Primeras Planas
+        <Link 
+          href="/primeras-planas" 
+          className={`uppercase tracking-wide text-xs sm:text-sm font-semibold transition ${
+            router.pathname === '/primeras-planas' 
+              ? 'text-white' 
+              : 'text-white/50 hover:text-white'
+          }`}
+        >
+          PRIMERAS PLANAS
         </Link>
-        <Link href="/columnas" className="text-white hover:text-white/80 transition text-xs sm:text-sm font-medium">
-          Columnas
+        <Link 
+          href="/columnas" 
+          className={`uppercase tracking-wide text-xs sm:text-sm font-semibold transition ${
+            router.pathname.startsWith('/columna') 
+              ? 'text-white' 
+              : 'text-white/50 hover:text-white'
+          }`}
+        >
+          COLUMNAS
         </Link>
-        <Link href="/autores" className="text-white hover:text-white/80 transition text-xs sm:text-sm font-medium">
-          Autores
+        <Link 
+          href="/autores" 
+          className={`uppercase tracking-wide text-xs sm:text-sm font-semibold transition ${
+            router.pathname.startsWith('/autor') 
+              ? 'text-white' 
+              : 'text-white/50 hover:text-white'
+          }`}
+        >
+          AUTORES
         </Link>
       </div>
     </>

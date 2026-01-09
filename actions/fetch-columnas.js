@@ -7,7 +7,7 @@ export async function fetchColumnas({ destacadas } = {}) {
             filters += `&filters[destacada][$eq]=true`;
         }
 
-        const url = `${process.env.NEXT_PUBLIC_STRAPI_URL}/columnas?populate[autor][populate][foto][fields][0]=url&populate[imagen][fields][0]=url${filters}`;
+        const url = `${process.env.NEXT_PUBLIC_STRAPI_URL}/columnas?populate[autor][populate][foto][fields][0]=url&populate[imagen][fields][0]=url&populate[articulos][fields][0]=id${filters}`;
 
         console.log('fetchColumnas', url);
         const res = await fetch(url);

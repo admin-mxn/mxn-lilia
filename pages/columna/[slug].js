@@ -142,7 +142,8 @@ const ColumnaPage = ({ columna }) => {
                                 {articulosList.map((articulo) => (
                                     <ArticuloCard 
                                         key={articulo.id} 
-                                        articulo={articulo} 
+                                        articulo={articulo}
+                                        hideAuthor={true}
                                     />
                                 ))}
                             </div>
