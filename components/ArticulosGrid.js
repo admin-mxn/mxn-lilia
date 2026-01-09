@@ -16,7 +16,7 @@ export default function ArticulosGrid({ articulos, titulo }) {
                     {titulo}
                 </h2>
             )}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+            <div className="flex flex-col gap-6 px-4 max-w-4xl mx-auto">
                 {articulos.map((articulo) => (
                     <ArticuloCard 
                         key={articulo.id} 
