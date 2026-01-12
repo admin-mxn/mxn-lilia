@@ -7,6 +7,7 @@ import { UserProvider, useFetchUser } from '../../lib/authContext';
 import { fetchArticuloBySlug } from '../../actions/fetch-articulos';
 import HomeBanner from '../../components/HomeBanner';
 import MiddleBanner from '../../components/MiddleBanner';
+import markdownToHtml from '../../lib/markdownToHtml';
 import { colors } from '../../lib/styles';
 
 const ArticuloPage = ({ articulo }) => {
@@ -32,12 +33,15 @@ const ArticuloPage = ({ articulo }) => {
     }
 
     const attrs = articulo.attributes || articulo;
-    const { titulo, contenido, extracto, fecha_publicacion, imagen, columna } = attrs;
+    const { titulo, contenido, contenidoHtml, extracto, fecha_publicacion, imagen, columna } = attrs;
     const columnaData = columna?.data?.attributes || columna;
     const autor = columnaData?.autor?.data?.attributes || columnaData?.autor;
     
     const imagenUrl = imagen?.data?.attributes?.url || imagen?.url;
     const autorFoto = autor?.foto?.data?.attributes?.url || autor?.foto?.url;
+
+    // Usar contenidoHtml si existe, sino usar contenido directamente
+    const contenidoRender = contenidoHtml || contenido;
 
     const fechaFormateada = new Date(fecha_publicacion).toLocaleDateString('es-MX', {
         year: 'numeric',
@@ -127,7 +131,7 @@ const ArticuloPage = ({ articulo }) => {
                         {/* Contenido */}
                         <div 
                             className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-lilia-primary"
-                            dangerouslySetInnerHTML={{ __html: contenido }}
+                            dangerouslySetInnerHTML={{ __html: contenidoRender }}
                         />
 
                         {/* Banner medio */}
@@ -213,6 +217,19 @@ export default ArticuloPage;
 
 export async function getServerSideProps({ params }) {
     const articulo = await fetchArticuloBySlug(params.slug);
+
+    // Convertir contenido markdown a HTML
+    if (articulo) {
+        const attrs = articulo.attributes || articulo;
+        if (attrs.contenido) {
+            const contenidoHtml = await markdownToHtml(attrs.contenido);
+            if (articulo.attributes) {
+                articulo.attributes.contenidoHtml = contenidoHtml;
+            } else {
+                articulo.contenidoHtml = contenidoHtml;
+            }
+        }
+    }
 
     return {
         props: {
