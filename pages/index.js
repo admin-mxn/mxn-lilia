@@ -32,13 +32,13 @@ const Home = ({ articulos, columnas }) => {
     <>
       <UserProvider value={{ user, loading }}>
         <Head>
-          <title>Lilia - Portal de Columnas</title>
-          <meta name="description" content="Portal de columnas y opinión" />
+          <title>MXN Televisión</title>
+          <meta name="description" content="Portal de opinión y crítica" />
         </Head>
         
         <CookieConsent
           location="bottom"
-          buttonText="Aceptar"
+          buttonText="Aceptar"  
           style={{ background: "#333", color: "#fff", fontSize: "13px" }}
           buttonStyle={{ background: "#8B5CF6", color: "#fff", fontSize: "13px" }}
           expires={150}
