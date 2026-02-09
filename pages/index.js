@@ -9,13 +9,15 @@ import { UserProvider } from '../lib/authContext';
 import Footer from '../layouts/Footer';
 import { fetchArticulos } from '../actions/fetch-articulos';
 import { fetchColumnas } from '../actions/fetch-columnas';
+import { fetchYoutubeVideos, fetchYoutubeChannel } from '../actions/fetch-youtube-videos';
 import ArticulosGrid from '../components/ArticulosGrid';
 import HomeBanner from '../components/HomeBanner';
 import MiddleBanner from '../components/MiddleBanner';
+import YoutubeSidebar, { YoutubeMobileSection } from '../components/YoutubeSidebar';
 import CookieConsent from "react-cookie-consent";
 import { colors } from '../lib/styles';
 
-const Home = ({ articulos, columnas }) => {
+const Home = ({ articulos, columnas, youtubeVideos, youtubeChannel }) => {
   const { user, loading } = useFetchUser();
   const [pageIndex, setPageIndex] = useState(1);
 
@@ -84,19 +86,30 @@ const Home = ({ articulos, columnas }) => {
             {/* Banner medio */}
             <MiddleBanner />
 
-            {/* Grid de artículos */}
-            <div className="max-w-6xl mx-auto">
-              <ArticulosGrid articulos={allArticulos} titulo="Últimos Artículos" />
-              
-              {/* Load More Button */}
-              <div className="text-center py-8">
-                <button
-                  onClick={() => setPageIndex(pageIndex + 1)}
-                  className="px-6 py-3 text-white rounded-lg hover:opacity-80 transition"
-                  style={{ backgroundColor: colors.accent }}
-                >
-                  Cargar más artículos
-                </button>
+            {/* YouTube Section para móvil - Scroll horizontal */}
+            <YoutubeMobileSection videos={youtubeVideos} channel={youtubeChannel} />
+
+            {/* Layout principal con Grid de artículos + YouTube sidebar */}
+            <div className="max-w-7xl mx-auto px-4">
+              <div className="flex flex-col lg:flex-row gap-8 py-8">
+                {/* Columna principal - Artículos */}
+                <div className="flex-1 min-w-0">
+                  <ArticulosGrid articulos={allArticulos} titulo="Últimos Artículos" />
+                  
+                  {/* Load More Button */}
+                  <div className="text-center py-8">
+                    <button
+                      onClick={() => setPageIndex(pageIndex + 1)}
+                      className="px-6 py-3 text-white rounded-lg hover:opacity-80 transition"
+                      style={{ backgroundColor: colors.accent }}
+                    >
+                      Cargar más artículos
+                    </button>
+                  </div>
+                </div>
+
+                {/* Columna derecha - YouTube */}
+                <YoutubeSidebar videos={youtubeVideos} channel={youtubeChannel} />
               </div>
             </div>
           </main>
@@ -111,13 +124,19 @@ const Home = ({ articulos, columnas }) => {
 export default Home;
 
 export async function getServerSideProps() {
-  const articulos = await fetchArticulos({ pageParam: 1 });
-  const columnas = await fetchColumnas({ destacadas: true });
+  const [articulos, columnas, youtubeVideos, youtubeChannel] = await Promise.all([
+    fetchArticulos({ pageParam: 1 }),
+    fetchColumnas({ destacadas: true }),
+    fetchYoutubeVideos({ limit: 8 }),
+    fetchYoutubeChannel()
+  ]);
   
   return {
     props: {
       articulos,
       columnas,
+      youtubeVideos,
+      youtubeChannel,
     },
   };
 }

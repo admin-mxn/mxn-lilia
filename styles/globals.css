@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ocultar scrollbar pero permitir scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 .gsi-material-button {
   -moz-user-select: none;
   -webkit-user-select: none;
